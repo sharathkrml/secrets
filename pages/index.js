@@ -1,8 +1,15 @@
-export default function Home() {
+export default function Home({ secret }) {
   return (
     <>
-      <p>{process.env.SECRET}</p>
+      <p>{secret}</p>
       <p>{process.env.NEXT_PUBLIC_SECRET}</p>
     </>
   );
+}
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      secret: process.env.SECRET,
+    },
+  };
 }
